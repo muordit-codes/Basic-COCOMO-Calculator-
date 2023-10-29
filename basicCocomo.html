@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basic COCOMO Calculator</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <style>
+        .container{
+            justify-content: center;
+            border: #536153 solid 3px;
+            border-width: 50px;
+        }
+        body{
+            background: #023047;
+            color: 	#FFFFFF;
+        }
+        .btn{
+            background-color: #001219;
+        }
+        .heading{
+            align-items: center;
+            
+        }
+    </style>
+
+    <body>
+        <div class="container">
+            <h1 class="heading">Basic COCOMO Calculator</h1>
+            <div class="form-group">
+                <label for="projectType"><b>Project Type:</b></label>
+                <select id="projectType" class="form-control">
+                    <option value="organic">Organic</option>
+                    <option value="semi-detached">Semi-Detached</option>
+                    <option value="embedded">Embedded</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kloc"><b>Line of Code (KLOC):</b></label>
+                <input type="number" id="kloc" class="form-control"><br>
+            </div>
+            <button class="btn btn-primary" onclick="calculateCOCOMO()">Calculate Effort, Development Time, and
+                Personnel</button>
+            <h2>Effort (Person-Months): <span id="effort">N/A</span></h2>
+            <h2>Development Time (Months): <span id="developmentTime">N/A</span></h2>
+            <h2>Personnel Required: <span id="personnel">N/A</span></h2>
+        </div>
+        <script>
+            function calculateCOCOMO() {
+                const projectType = document.getElementById('projectType').value;
+                const kloc = parseInt(document.getElementById('kloc').value);
+                // Define COCOMO constants for different project types
+                const constants = {
+                    organic: { a: 2.4, b: 1.05, c: 2.5, d: 0.38 },
+                    'semi-detached': { a: 3.0, b: 1.12, c: 2.5, d: 0.35 },
+                    embedded: { a: 3.6, b: 1.20, c: 2.5, d: 0.32 },
+                };
+                const { a, b, c, d } = constants[projectType];
+                const effort = a * Math.pow(kloc, b);
+                const developmentTime = c * Math.pow(effort, d);
+                const personnel = effort / developmentTime;
+                document.getElementById('effort').textContent = effort.toFixed(2);
+                document.getElementById('developmentTime').textContent = developmentTime.toFixed(2);
+                document.getElementById('personnel').textContent = personnel.toFixed(2);
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

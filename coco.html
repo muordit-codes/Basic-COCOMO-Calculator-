@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic COCOMO Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="coco.js"></script>
+</head>
+<body>
+    <h1>Basic COCOMO Calculator</h1>
+    <div id="calculator">
+        <label for="code-lines">Enter the number of estimated lines of code:</label>
+        <input type="number" id="code-lines" name="code-lines">
+        <button onclick="calculateCOCOMO()">Calculate</button>
+    </div>
+    <div id="results">
+        <h2>Organic Values</h2>
+        <p>Number of Months Needed: <span id="organic-months">-</span></p>
+        <p>Number of People Needed: <span id="organic-people">-</span></p>
+        
+        <h2>Semi-Detached Values</h2>
+        <p>Number of Months Needed: <span id="semi-detached-months">-</span></p>
+        <p>Number of People Needed: <span id="semi-detached-people">-</span></p>
+        
+        <h2>Embedded Values</h2>
+        <p>Number of Months Needed: <span id="embedded-months">-</span></p>
+        <p>Number of People Needed: <span id="embedded-people">-</span></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
